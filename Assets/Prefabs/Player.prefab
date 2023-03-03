@@ -268,7 +268,6 @@ MonoBehaviour:
   walkingSpeed: 7.5
   runningSpeed: 11.5
   jumpSpeed: 15
-  gravity: 20
   lookSpeed: 2
   lookXLimit: 45
   canMove: 1
@@ -298,7 +297,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 2
+  <PrefabId>k__BackingField: 3
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 83102251
   <SceneId>k__BackingField: 0
