@@ -15,6 +15,12 @@ public class PlayerController : NetworkBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
 
+    [Header("Animator")]
+    public Animator anim;
+    public bool isJumpingAnim;
+    public bool isGroundedAnim;
+
+
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -72,17 +78,45 @@ public class PlayerController : NetworkBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedZ);
 
-        
+        // Handle Animation blend tree
+        if(moveDirection != Vector3.zero)
+        {
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving",false);
+        }
+        float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+        float speed = inputMagnitude * walkingSpeed;
+        if (isRunning)
+        {
+            inputMagnitude = inputMagnitude * 2;
+        }
+        anim.SetFloat("Input Magnitude", inputMagnitude, 0.1f, Time.deltaTime);
+
+        if (characterController.isGrounded)
+        {
+            anim.SetBool("isGrounded", true);
+            anim.SetBool("isFalling", false);
+            anim.SetBool("isJumping", false);
+
+        }
+        else
+        {
+            anim.SetBool("isGrounded", false);
+            anim.SetBool("isFalling", true);
+        }
 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpSpeed;
+            anim.SetBool("isJumping", true);
         }
         else
         {
             moveDirection.y = movementDirectionY;
         }
-
 
         // Hold left Alt to glide
         if (Input.GetKey(KeyCode.LeftAlt) && !characterController.isGrounded) 
