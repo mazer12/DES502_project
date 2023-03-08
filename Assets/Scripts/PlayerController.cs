@@ -78,7 +78,7 @@ public class PlayerController : NetworkBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedZ);
 
-        // Handle Animation blend tree
+        // Handle Animations
         if(moveDirection != Vector3.zero)
         {
             anim.SetBool("isMoving", true);
@@ -117,6 +117,7 @@ public class PlayerController : NetworkBehaviour
         {
             moveDirection.y = movementDirectionY;
         }
+        TempShooting();
 
         // Hold left Alt to glide
         if (Input.GetKey(KeyCode.LeftAlt) && !characterController.isGrounded) 
@@ -153,6 +154,18 @@ public class PlayerController : NetworkBehaviour
             // Unlock Curser
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+    }
+    private void TempShooting()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            anim.SetBool("Shoot", true);
+
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            anim.SetBool("Shoot", false);
         }
     }
 }

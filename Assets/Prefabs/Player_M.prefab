@@ -169,8 +169,8 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 6848074278919753448}
   _networkObjectCache: {fileID: 6848074278919753448}
   walkingSpeed: 5
-  runningSpeed: 7.5
-  jumpSpeed: 15
+  runningSpeed: 9
+  jumpSpeed: 10
   lookSpeed: 2
   lookXLimit: 45
   anim: {fileID: 4900131066536580784}
@@ -203,7 +203,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 1
+  <PrefabId>k__BackingField: 7
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
